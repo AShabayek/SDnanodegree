@@ -19,14 +19,9 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: histogram.png "class frequencies"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+
+
+
 
 
 
@@ -105,28 +100,26 @@ My final model consisted of the following layers:
 | 2-Inc.Convolution 3x3	|1x1 stride, valid padding, outputs 13x13x28.   |
 | RELU					|												|
 | Max pooling	      	| 1x1 stride,  outputs 6x6x28 				    |
+|Fully connected(merge of Inc. 1 & 2)|                                  |
 | Flatten & Input       | 1800
-| Fully connected(merge of Inc. 1 & 2)		| outputs : 700        									    |
+| Fully connected		| outputs : 700       							|
 | Fully connected       | output  : 400                                 |
 | Fully connected       | output  : 120                                 |
 | Fully connected       | output  : 84                                  |
 | Fully connected       | output  : 43                                  |
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
  
 
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+####3. Network Training.
 
-To train the model, I used an ....
+In training I used 24 Epochs as adding the inception layers and the flat layers at the end of the network adds complexity and thus demands more training and tuning, 24 was a sufficient number of epochs to near saturation. Learning rate was 0.0005
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+####4. Results.
 
 My final model results were:
-* training set accuracy of ?
+* 1.0
 * validation set accuracy of ? 
-* test set accuracy of ?
+* 0.919
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -147,22 +140,29 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+<img src="./Test/animalcrossing.png" width="200" height="200"> <img src="./Test/60speedlimit.png" width="200" height="200"> 
+<img src="./Test/passright.png" width="200" height="200"> <img src="./Test/70speed.jpg" width="200" height="200">
+<img src="./Test/bumpyroad.jpg" width="200" height="200"> <img src="./Test/roadworks.jpg" width="200" height="200"> 
+<img src="./Test/roundabout.jpg" width="200" height="200"> <img src="./Test/slippery.jpg" width="200" height="200"> 
+<img src="./Test/noentry.jpg" width="200" height="200"> <img src="./Test/nopassing.jpg" width="200" height="200"> 
+some will be difficult to classify due the features being of center and having alot of background noise in them.
 
-The first image might be difficult to classify because ...
-
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+####2.Model's performance to new inputs.
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	        					| 
+| Image			        |     Prediction	        |      Probability | Output	        					|
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+|ID:3(60speedlimit)      		| Stop sign   								| 
+|ID:4 (70speed)     			| U-turn 									|
+|ID:31 (animalcrossing)			| Yield									|
+|ID:22 (bumpyroad)	      		| Bumpy Road					 		|
+|ID:17 (noentry)			    | Slippery Road      						|
+|ID:9 (nopassing)      		    | Stop sign   								| 
+|ID:38 (passright)     			| U-turn 									|
+|ID:25 (roadworks)				| Yield									|
+|ID:40roundabout	      		| Bumpy Road					 			|
+|ID:23 (Slippery Road)			| Slippery Road      					    |
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
@@ -184,7 +184,5 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 For the second image ... 
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
 
 
