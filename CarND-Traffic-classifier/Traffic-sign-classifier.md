@@ -140,11 +140,12 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-<img src="./Test/animalcrossing.png" width="200" height="200"> <img src="./Test/60speedlimit.png" width="200" height="200"> 
-<img src="./Test/passright.png" width="200" height="200"> <img src="./Test/70speed.jpg" width="200" height="200">
-<img src="./Test/bumpyroad.jpg" width="200" height="200"> <img src="./Test/roadworks.jpg" width="200" height="200"> 
-<img src="./Test/roundabout.jpg" width="200" height="200"> <img src="./Test/slippery.jpg" width="200" height="200"> 
+<img src="./Test/60speedlimit.png" width="200" height="200"> <img src="./Test/70speed.jpg" width="200" height="200">
+<img src="./Test/animalcrossing.png" width="200" height="200">  <img src="./Test/bumpyroad.jpg" width="200" height="200">
 <img src="./Test/noentry.jpg" width="200" height="200"> <img src="./Test/nopassing.jpg" width="200" height="200"> 
+<img src="./Test/passright.png" width="200" height="200"> <img src="./Test/roadworks.jpg" width="200" height="200"> 
+<img src="./Test/roundabout.jpg" width="200" height="200"> <img src="./Test/slippery.jpg" width="200" height="200"> 
+
 some will be difficult to classify due the features being of center and having alot of background noise in them.
 
 ####2.Model's performance to new inputs.
@@ -153,16 +154,16 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        |      Probability | Output	        					|
 |:---------------------:|:---------------------------------------------:| 
-|ID:3(60speedlimit)      		| Stop sign   								| 
-|ID:4 (70speed)     			| U-turn 									|
-|ID:31 (animalcrossing)			| Yield									|
-|ID:22 (bumpyroad)	      		| Bumpy Road					 		|
-|ID:17 (noentry)			    | Slippery Road      						|
-|ID:9 (nopassing)      		    | Stop sign   								| 
-|ID:38 (passright)     			| U-turn 									|
-|ID:25 (roadworks)				| Yield									|
-|ID:40roundabout	      		| Bumpy Road					 			|
-|ID:23 (Slippery Road)			| Slippery Road      					    |
+|ID:3(60speedlimit)      		| 1 Stop sign   		|						| [ 1,  4, 40]
+|ID:4 (70speed)     			| 23U-turn 						||[23, 11, 31]
+|ID:31 (animalcrossing)			|22 Yield									|| [22, 35, 26]
+|ID:22 (bumpyroad)	      		|33 Bumpy Road					 		||       [33, 34, 38]
+|ID:17 (noentry)			    | Slippery Road      						||       [33, 34, 38]
+|ID:9 (nopassing)      		    | 37Stop sign   								| |       [37, 40, 39]   
+|ID:38 (passright)     			| 38U-turn 									||  [38, 20,  5]
+|ID:25 (roadworks)				|25 Yield									||[25, 26, 39]
+|ID:40roundabout	      		| 10Bumpy Road					 			||       [10, 42,  7]
+|ID:23 (Slippery Road)			| 11Slippery Road      					    ||[11, 23, 19]
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
