@@ -4,7 +4,7 @@
 
 
 
----
+
 
 **Build a Traffic Sign Recognition Project**
 
@@ -15,9 +15,6 @@ The goals / steps of this project are the following:
 * Use the model to make predictions on new images
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
-
-
-[//]: # (Image References)
 
 
 
@@ -112,13 +109,13 @@ My final model consisted of the following layers:
 
 ####3. Network Training.
 
-In training I used 24 Epochs as adding the inception layers and the flat layers at the end of the network adds complexity and thus demands more training and tuning, 24 was a sufficient number of epochs to near saturation. Learning rate was 0.0005
+In training I used 24 Epochs as adding the inception layers and the flat layers at the end of the network adds complexity and thus demands more training and tuning, 24 was a sufficient number of epochs to near saturation. Learning rate was 0.0005. I tried other optimizers such as the adagrad but the adam optimizer yielded best training result thus far.
 
 ####4. Results.
 
 My final model results were:
 * 1.0
-* validation set accuracy of ? 
+* 0.992
 * 0.919
 
 If an iterative approach was chosen:
@@ -148,42 +145,44 @@ Here are five German traffic signs that I found on the web:
 
 some will be difficult to classify due the features being of center and having alot of background noise in them.
 
-####2.Model's performance to new inputs.
+####2.Model`s performance to new inputs.
 
-Here are the results of the prediction:
+Here are the results of the prediction arranged respectively:
 
 | Image			        |     Prediction	        |      Probability | Output	        					|
 |:---------------------:|:---------------------------------------------:| 
-|ID:3(60speedlimit)      		| 1 Stop sign   		|						| [ 1,  4, 40]
-|ID:4 (70speed)     			| 23U-turn 						||[23, 11, 31]
-|ID:31 (animalcrossing)			|22 Yield									|| [22, 35, 26]
-|ID:22 (bumpyroad)	      		|33 Bumpy Road					 		||       [33, 34, 38]
-|ID:17 (noentry)			    | Slippery Road      						||       [33, 34, 38]
-|ID:9 (nopassing)      		    | 37Stop sign   								| |       [37, 40, 39]   
-|ID:38 (passright)     			| 38U-turn 									||  [38, 20,  5]
-|ID:25 (roadworks)				|25 Yield									||[25, 26, 39]
-|ID:40roundabout	      		| 10Bumpy Road					 			||       [10, 42,  7]
-|ID:23 (Slippery Road)			| 11Slippery Road      					    ||[11, 23, 19]
+|ID:3(60speedlimit)      		| 3 60speedlimit   		|[  99.9,   6.41e-04,   1.91e-09]						| [ 3,  1,  5]
+|ID:4 (70speed)     			| 1 30speedlimit						|[  95.5,   4.44e-02,   1.43e-05]|[ 1,  4, 40]
+|ID:31 (animalcrossing)			|23 slipperyroad									|[  98.2,   1.75e-02,   5.09e-07]| [23, 11, 31]
+|ID:22 (bumpyroad)	      		|22 bumpyroad					 		|[  100,   1.47e-09,   3.45-10]|       [22, 35, 26]
+|ID:17 (noentry)			    | 33 Turnrightahead      						|[ 50.19,49.8,8.19e-12]|       [33, 34, 38]
+|ID:9 (nopassing)      		    | 37 Go straight or left   								|[ 94.9,3.91e-02,1.13e-02]|       [37, 40, 39]   
+|ID:38 (passright)     			| 38 passright 									|[  99.9,   6.20e-06,   3.12e-17]|  [38, 20,  5]
+|ID:25 (roadworks)				|25 roadworks									|[  90.1,   5.44,   4.37]|[25, 26, 39]
+|ID:40roundabout	      		| 10 NPVs over 3.5 					 			|[  97.4,   2.56,   9.33e-05]|       [10, 42,  7]
+|ID:23 (Slippery Road)			| 11 ROW at  next inter.      					    |[  99.9,   1.64e-06,   7.62e-07]|[11, 23, 19]
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 4 of the 10 traffic signs, which gives an accuracy of 40%. This isworse than the test data however, many of the used images are offcentered with alot background noise, unlike most of both the training and used data.
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+####3. Model accuracy 
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+The code for making predictions on my final model is located in the 14th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+For the First, fourth,seventh and eight images , prediction accuracy was good and was properly classified.This can be associated to them not needing any centering and little to no feature extraction which make them somehow similar to the test/train set.
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+As for the Second, third and tenth images, they were wrongly classified and even though they re the second best prediction probability the model only assigned very low probabilties to them, for the second and tenth the bad centering and background noise are very probable causes showing the models inability to handle without better preprocessing of the images. the third however implies a model bad preformance or ill training.
+
+finally the fifth ,sixth and ninth images having very noisy backgrounds with different colors and also some off centering yielded very bad results.
+
+####4. Further Improvements
+To conclude, my intial thoughts were not to use grayscale images but rather leave them  with their original RGB content as that might help models accuracy given more inputs. This could be the case given perfectly cropped images with better feature extraction in the preprocessing but as demonstrated by the noisy enviroment in most images that might not be the case and having converted into grayscale would improve results.
+The use of regularization along with more training epochs might prove to yield better results aswell to improve upon issues such as in the third images which shows poor training attributed to the model being more complex than the regular lenet architecture.
 
 
-For the second image ... 
+
+
+
 
 
 
