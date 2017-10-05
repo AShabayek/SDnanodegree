@@ -111,24 +111,22 @@ My final model consisted of the following layers:
 
 In training I used 24 Epochs as adding the inception layers and the flat layers at the end of the network adds complexity and thus demands more training and tuning, 24 was a sufficient number of epochs to near saturation. Learning rate was 0.0005. I tried other optimizers such as the adagrad but the adam optimizer yielded best training result thus far.
 
-####4. Results.
+####4.Network architecture and  Results.
 
 My final model results were:
 * 1.0
 * 0.992
 * 0.919
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+The project started with using the standard Lenet network Which yielded decent results specially when increasing number of epochs and modifying it so that would use RGB images. The problem of traffic signs at first doesnt seem to need more complex networks as output classes are not as much as other recognition problems and fairly distinctive features. And while the Standard Lenet had fairly good results there was much room for improvement so inception was the option to go for for a little more improvment.
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+Inception is used to create parallel layers in order to get a more robust representation usually by using different filter sizes in each parallel layer. In this approach after tries to follow inception version 3 which in its design yield 5x5 filter convloution layer parallel with another layer of 3x3 filter and lastly a 1x1 convloution layer.
+
+When trying the Iception version 3 it yield a huge output at the flattened layer merging the three branches which then not only required more epochs to train and is more prone to overfitting but it also required more flat layers to reach final output, this approach in a sense over complicates a simple problem from one point of view, therefore  using the inception concept in a simpler manner was chosen. by creating only two parallel branches each yielding the smallest filter size 3x3, while training however they would have different weights and therefore having different representation and by so improving the classification.
+Epochs still needed to be increased to 24  and while this model still has its down falls it still yields better results than a standard lenet and is simpler than Inception version 3 shown below.
+
+
+<img src="./inception.png" width="400" height="200">
  
 
 ###Test a Model on New Images
